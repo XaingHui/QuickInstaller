@@ -6,7 +6,9 @@
 
 告别繁琐的环境配置，让每个人都能轻松用上 AI
 
- [![Stars](https://img.shields.io/github/stars/yourname/ai-toolbox?style=for-the-badge)](https://github.com/yourname/ai-toolbox/stargazers)[![Issues](https://img.shields.io/github/issues/yourname/ai-toolbox?style=for-the-badge)](https://github.com/yourname/ai-toolbox/issues)[![License](https://img.shields.io/github/license/yourname/ai-toolbox?style=for-the-badge)](https://github.com/yourname/ai-toolbox/blob/main/LICENSE)</div>
+[![Stars](https://img.shields.io/github/stars/XaingHui/QuickInstaller?style=for-the-badge)](https://github.com/XaingHui/QuickInstaller/stargazers)
+[![Issues](https://img.shields.io/github/issues/XaingHui/QuickInstaller?style=for-the-badge)](https://github.com/XaingHui/QuickInstaller/issues)
+[![License](https://img.shields.io/github/license/XaingHui/QuickInstaller?style=for-the-badge)](https://github.com/XaingHui/QuickInstaller/blob/main/LICENSE)</div>
 
 ## 📋 目录
 
