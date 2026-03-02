@@ -1,0 +1,216 @@
+/* 
+  高颜值的亮色调主题 - 丝滑流体背景设计 
+  灵感：小米 HyperOS
+*/
+
+:root {
+  /* 前景色改为深色，以适应浅色粉紫光亮渐变背景 */
+  --foreground: 220 40% 15%;
+  --muted-foreground: 220 10% 45%;
+
+  --primary: 260 80% 65%;
+  /* 薰衣草紫为主色调 */
+  --primary-foreground: 0 0% 100%;
+
+  --card: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 100%;
+  /* 输入框背景设为纯白基础色 */
+  --ring: 260 80% 65%;
+
+  --radius: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  /* 基础底色：雾蓝色 (Mist Blue) */
+  background-color: #B0E0E6;
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 动态背景修饰：HyperOS 风格极致流体光效动画 */
+@keyframes ocean-flow-1 {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+  }
+
+  33% {
+    transform: translate(8vw, 12vh) scale(1.25);
+  }
+
+  66% {
+    transform: translate(-5vw, 8vh) scale(1.05);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1.1);
+  }
+}
+
+@keyframes ocean-flow-2 {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+  }
+
+  33% {
+    transform: translate(-10vw, -10vh) scale(1.3);
+  }
+
+  66% {
+    transform: translate(8vw, -12vh) scale(1.0);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1.1);
+  }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -20vh;
+  left: -20vw;
+  width: 140vw;
+  height: 140vh;
+  /* 桃粉色 (Peachy Pink) 与 薰衣草紫 (Lavender Purple) 强效覆盖 */
+  background:
+    radial-gradient(circle at 20% 30%, #FFD1D1 0%, transparent 60%),
+    radial-gradient(circle at 80% 60%, #E6E6FA 0%, transparent 65%);
+  filter: blur(100px);
+  /* 极其强烈的模糊，制造浓稠液体错觉 */
+  pointer-events: none;
+  z-index: -2;
+  animation: ocean-flow-1 25s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -10vh;
+  left: 10vw;
+  width: 120vw;
+  height: 120vh;
+  /* 雾蓝 (Mist Blue) 与 薰衣草紫增强重叠 */
+  background:
+    radial-gradient(circle at 75% 25%, #B0E0E6 0%, transparent 55%),
+    radial-gradient(circle at 25% 75%, #E6E6FA 0%, transparent 60%);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -1;
+  animation: ocean-flow-2 30s ease-in-out infinite alternate;
+}
+
+/* 玻璃态与卡片基础工具类 (浅色高通透毛玻璃面板) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.12), 0 0 20px rgba(255, 255, 255, 0.4);
+  transform: translateY(-4px);
+}
+
+/* 渐变标题 */
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsla(var(--foreground), 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 交互型主要按钮 */
+.btn-primary {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  border-radius: calc(var(--radius) - 4px);
+  padding: 0.6em 1.2em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  box-shadow: 0 4px 12px rgba(120, 80, 210, 0.2);
+}
+
+.btn-primary:hover {
+  background: hsla(var(--primary), 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(120, 80, 210, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* 次要/轮廓按钮 */
+.btn-outline {
+  background: rgba(255, 255, 255, 0.3);
+  color: hsl(var(--foreground));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: calc(var(--radius) - 4px);
+  padding: 0.6em 1.2em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* 导航栏样式 */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 页面主干 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
