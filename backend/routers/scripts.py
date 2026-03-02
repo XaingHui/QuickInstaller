@@ -39,7 +39,7 @@ def upload_script(title: str, description: str, version: str, file: UploadFile =
         description=description,
         version=version,
         file_path=file_location,
-        author_id=1  # TODO: 接入真正鉴权系统
+        author_id=1  # 未来: 接入真正鉴权系统
     )
     db.add(new_script)
     db.commit()
