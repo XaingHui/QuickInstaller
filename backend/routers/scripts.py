@@ -1,9 +1,12 @@
+from IPython.core.release import author
 from fastapi import APIRouter, Depends, HTTPException, File, UploadFile, Form
 from sqlalchemy.orm import Session
 from typing import List
 import os
 import shutil
 import models
+import auth
+import database
 
 
 from backend.database import get_db
