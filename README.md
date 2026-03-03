@@ -1,67 +1,51 @@
-<div align="center">  
+# 🛠 QuickInstaller - 极客脚本工具箱
 
-# AI ToolBox
+**探索、获取并一键部署您的生产力。**
 
-**一键部署和管理主流 AI 工具的统一平台**
+QuickInstaller 是一个专为开发者和运维极客打造的脚本分发与管理平台。它不仅是一个工具仓库，更是一个追求极致简约美学与流畅交互的“黑系”极客空间。
 
-告别繁琐的环境配置，让每个人都能轻松用上 AI
+---
 
-[![Stars](https://img.shields.io/github/stars/XaingHui/QuickInstaller?style=for-the-badge)](https://github.com/XaingHui/QuickInstaller/stargazers)
-[![Issues](https://img.shields.io/github/issues/XaingHui/QuickInstaller?style=for-the-badge)](https://github.com/XaingHui/QuickInstaller/issues)
-[![License](https://img.shields.io/github/license/XaingHui/QuickInstaller?style=for-the-badge)](https://github.com/XaingHui/QuickInstaller/blob/main/LICENSE)</div>
+## 🌐 即刻访问 (Live Demo)
 
-## 📋 目录
+您可以直接通过以下公网地址体验我们的全网公测版：
 
-- [项目简介](#-%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B)
-- [功能特性](#-%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)
-- [支持工具](#-%E6%94%AF%E6%8C%81%E5%B7%A5%E5%85%B7)
-- [技术架构](#-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84)
-- [快速开始](#-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
-- [使用说明](#-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
-- [开发路线图](#-%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF%E5%9B%BE)
-- [贡献指南](#-%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97)
-- [许可证](#-%E8%AE%B8%E5%8F%AF%E8%AF%81)
-- [联系方式](#-%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F)
-- [致谢](#-%E8%87%B4%E8%B0%A2)
+### 🚀 [http://47.99.118.54/](http://47.99.118.54/)
 
-## 🔍 项目简介
+---
 
-目前安装各类 AI 工具（OpenClaw、Ollama、Stable Diffusion 等）需要：
+## ✨ 核心特色
 
-- 手动配置运行环境（Python、Node.js、CUDA...）
-- 处理复杂的依赖关系和版本冲突
-- 阅读不同项目的安装文档
-- 排查各种平台兼容性问题
+- **极致简约美学**：采用深色极简 UI 设计，辅以珠光灵动背景与顶级微光动效，让工具管理也成为一种享受。
+- **一键脚本获取**：无需繁琐搜索，点击即可获取经过审核的优质自动化脚本。
+- **开发者社区**：注册并加入我们，分发您的高性能脚本，赋能更多开发者。
+- **全栈性能支撑**：基于 FastAPI 异步后端与 Vite 高速前端构建，响应如闪电般迅速。
 
-**AI ToolBox** 将这些步骤封装为统一的一键操作，提供可视化界面，让技术小白也能轻松部署 AI 工具。
+---
 
-> 💡 类似于 Homebrew 之于 macOS 命令行工具，AI ToolBox 之于 AI 应用。
+## 📖 用户操作指南
 
-([⬆ 回到顶部](#readme-top))
+### 1. 探索工具
+在首页您可以浏览所有已通过审核的优质脚本。通过顶部的分类标签（AI工具、Python相关等），快速锁定您需要的资源。
 
-\## ✨ 功能特性
+### 2. 获取脚本
+点击对应的脚本卡片，即可一键下载原始文件或获取在线部署指令。
 
-| 功能  | 描述  | 状态  |
-| --- | --- | --- |
-| 🖱️ 一键安装 | 选择工具，点击即装，自动处理依赖 | 🚧 开发中 |
-| 📊 状态监控 | 实时查看工具运行状态、资源占用 | 📋 计划中 |
-| 🔄 一键更新 | 检测新版本，一键升级 | 📋 计划中 |
-| 🗑️ 干净卸载 | 完整移除工具及其依赖 | 📋 计划中 |
-| 🔍 环境检测 | 自动检测系统环境，推荐可用工具 | 📋 计划中 |
-| 🐳 Docker 支持 | 支持容器化安装，环境隔离 | 📋 计划中 |
-| 🌐 多平台 | 支持 Windows / macOS / Linux | 🚧 开发中 |
+### 3. 分发您的脚本
+1. **注册/登录**：点击右上角加入社区。
+2. **上传脚本**：填入脚本标题、描述并上传物理文件。
+3. **等待审核**：管理员审核通过后，您的脚本将立即在首页展示，造福全网极客。
 
-([⬆ 回到顶部](#readme-top))
+---
 
-\## 📦 支持工具
+## 🛡 开发与部署
 
-|     |     |     |     |
-| :---: | :---: | :---: | :---: |
-| <img src="/C:/Program%20Files/Joplin/resources/app.asar/docs/images/openclaw.png" width="60" class="jop-noMdConv">  <br>**OpenClaw**  <br>个人 AI 助手 | <img src="/C:/Program%20Files/Joplin/resources/app.asar/docs/images/antigravity.png" width="60" class="jop-noMdConv">  <br>**Antigravity**  <br>AI 开发框架 | <img src="/C:/Program%20Files/Joplin/resources/app.asar/docs/images/ollama.png" width="60" class="jop-noMdConv">  <br>**Ollama**  <br>本地大模型 | <img src="/C:/Program%20Files/Joplin/resources/app.asar/docs/images/openwebui.png" width="60" class="jop-noMdConv">  <br>**Open WebUI**  <br>对话界面 |
-| <img src="/C:/Program%20Files/Joplin/resources/app.asar/docs/images/sd.png" width="60" class="jop-noMdConv">  <br>**SD WebUI**  <br>AI 绘图 | <img src="/C:/Program%20Files/Joplin/resources/app.asar/docs/images/comfyui.png" width="60" class="jop-noMdConv">  <br>**ComfyUI**  <br>节点工作流 | <img src="/C:/Program%20Files/Joplin/resources/app.asar/docs/images/more.png" width="60" class="jop-noMdConv">  <br>**更多...**  <br>持续添加中 |     |
+如果您是开发者，想了解本项目的底层架构或在自己的服务器上部署一套，请参考以下文档：
 
-([⬆ 回到顶部](#readme-top))
+- [🛠 开发者手册 (README_DEV.md)](./README_DEV.md)
+- [🚀 生产环境部署指南 (DEPLOYMENT.md)](./DEPLOYMENT.md)
 
+<<<<<<< HEAD
 \## 🏗️ 技术架构
 
 ```text
@@ -225,3 +209,8 @@ ai-toolbox/
 - [Img Shields](https://shields.io)
 
 ([⬆ 回到顶部](#readme-top))
+=======
+---
+**Designed with ❤️ by Geek for Geeks.**  
+**Current Status**: V2.0 Stable
+>>>>>>> 3fdb5bb (添加功能，针对用户上传的脚本，后台进行检查，是否有强制开始utf-8编码，如果没有开启，则服务器自动加入强制开启utf-8编码)

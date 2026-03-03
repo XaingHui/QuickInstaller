@@ -8,12 +8,51 @@ import models
 import auth
 import database
 
+import chardet
+
 router = APIRouter()
 UPLOAD_DIR = "uploads"
 
 # 确保上传目录存在
 if not os.path.exists(UPLOAD_DIR):
     os.makedirs(UPLOAD_DIR)
+
+def _process_and_fix_ps1_encoding(file_path: str):
+    """
+    自动检测 .ps1 脚本编码，将其转换为 UTF-8 with BOM，
+    并注入环境自适应头，解决乱码问题。
+    """
+    if not file_path.endswith(".ps1"):
+        return
+
+    # 1. 检测原始编码
+    with open(file_path, "rb") as f:
+        raw_data = f.read()
+    
+    detector = chardet.detect(raw_data)
+    encoding = detector['encoding'] or 'utf-8'
+    
+    # 2. 读取并清理旧的自适应头（防止重复注入）
+    try:
+        content = raw_data.decode(encoding)
+    except Exception:
+        content = raw_data.decode('latin-1') # 兜底方案
+
+    adaptive_header = (
+        "# 设置控制台输出编码为 UTF-8，解决中文乱码\n"
+        "if ($PSVersionTable.PSVersion.Major -ge 5) {\n"
+        "    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n"
+        "}\n"
+    )
+
+    # 如果已经有类似的头，不重复添加
+    if "# 设置控制台输出编码" not in content:
+        content = adaptive_header + content
+
+    # 3. 以 UTF-8 with BOM 格式强制写回 (utf-8-sig)
+    with open(file_path, "w", encoding="utf-8-sig") as f:
+        f.write(content)
+    print(f"-> 脚本编码已自动净化 & 加固: {file_path}")
 
 @router.get("/")
 def get_scripts(db: Session = Depends(database.get_db)):
@@ -41,6 +80,9 @@ def upload_script(
     file_location = f"{UPLOAD_DIR}/{file.filename}"
     with open(file_location, "wb+") as file_object:
         shutil.copyfileobj(file.file, file_object)
+
+    # 自动化“乱码克星”：保存后立即进行编码净化与加固
+    _process_and_fix_ps1_encoding(file_location)
 
     new_script = models.Script(
         title=title,
