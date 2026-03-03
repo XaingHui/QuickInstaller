@@ -4,7 +4,7 @@ from typing import List
 import os
 import shutil
 
-from database import get_db
+import database
 import models
 import auth
 
@@ -16,13 +16,13 @@ if not os.path.exists(UPLOAD_DIR):
     os.makedirs(UPLOAD_DIR)
 
 @router.get("/")
-def get_scripts(db: Session = Depends(get_db)):
+def get_scripts(db: Session = Depends(database.get_db)):
     # 仅展示已通过审核的脚本
     scripts = db.query(models.Script).filter(models.Script.status == models.ScriptStatus.APPROVED).all()
     return scripts
 
 @router.get("/{script_id}")
-def get_script_detail(script_id: int, db: Session = Depends(get_db)):
+def get_script_detail(script_id: int, db: Session = Depends(database.get_db)):
     script = db.query(models.Script).filter(models.Script.id == script_id).first()
     if not script:
         raise HTTPException(status_code=404, detail="Script not found")

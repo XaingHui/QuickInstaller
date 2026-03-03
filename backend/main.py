@@ -1,3 +1,9 @@
+import os
+import sys
+
+# 关键：将项目根目录添加到系统路径，防止子目录导入失败
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import engine, Base, SessionLocal
