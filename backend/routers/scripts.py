@@ -9,7 +9,7 @@ import auth
 import database
 
 
-from backend.database import get_db
+from database import get_db
 
 router = APIRouter()
 UPLOAD_DIR = "uploads"
