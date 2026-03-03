@@ -18,7 +18,7 @@ def get_pending_scripts(db: Session = Depends(database.get_db), current_admin: m
 
 # 审核通过
 @router.post("/{script_id}/approve")
-def approve_script(script_id: int, db: Session = Depends(get_db), current_admin: models.User = Depends(get_current_admin)):
+def approve_script(script_id: int, db: Session = Depends(database.get_db), current_admin: models.User = Depends(get_current_admin)):
     script = db.query(models.Script).filter(models.Script.id == script_id).first()
     if not script:
         raise HTTPException(status_code=404, detail="Script not found")
@@ -29,7 +29,7 @@ def approve_script(script_id: int, db: Session = Depends(get_db), current_admin:
 
 # 审核驳回
 @router.post("/{script_id}/reject")
-def reject_script(script_id: int, db: Session = Depends(get_db), current_admin: models.User = Depends(get_current_admin)):
+def reject_script(script_id: int, db: Session = Depends(database.get_db), current_admin: models.User = Depends(get_current_admin)):
     script = db.query(models.Script).filter(models.Script.id == script_id).first()
     if not script:
         raise HTTPException(status_code=404, detail="Script not found")
