@@ -3,10 +3,12 @@ from sqlalchemy.orm import Session
 from typing import List
 import os
 import shutil
-
-import database
 import models
-import auth
+from backend import database
+
+from backend import auth
+
+from backend.database import get_db
 
 router = APIRouter()
 UPLOAD_DIR = "uploads"
