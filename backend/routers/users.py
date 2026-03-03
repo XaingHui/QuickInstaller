@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from datetime import timedelta
 
-from database import get_db
+import database
 import models
 import auth
 
@@ -19,7 +19,7 @@ class UserRegister(BaseModel):
     display_name: Optional[str] = None
 
 @router.post("/register")
-def register(user_data: UserRegister, db: Session = Depends(get_db)):
+def register(user_data: UserRegister, db: Session = Depends(database.get_db)):
     if db.query(models.User).filter(models.User.username == user_data.username).first():
         raise HTTPException(status_code=400, detail="用户名已存在")
     
@@ -36,7 +36,7 @@ def register(user_data: UserRegister, db: Session = Depends(get_db)):
     return {"message": "注册成功"}
 
 @router.post("/token")
-def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(database.get_db)):
     user = db.query(models.User).filter(models.User.username == form_data.username).first()
     if not user or not auth.verify_password(form_data.password, user.hashed_password):
         raise HTTPException(
