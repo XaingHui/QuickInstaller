@@ -3,9 +3,11 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from datetime import timedelta
 
-import database
+
 import models
-import auth
+from backend import database
+
+from backend import auth
 
 from pydantic import BaseModel
 from typing import Optional
