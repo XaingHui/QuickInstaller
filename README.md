@@ -77,11 +77,10 @@
 └──────────┴──────────┴───────────────────┘
 技术栈
 前端：
-- React / Vue 3
+- 原生html
 - TailwindCSS
-- Vite
 后端：
-- Node.js (Express) 或 Python (FastAPI)
+- Python (FastAPI)
 - WebSocket（实时日志推送）
 - child_process / subprocess（执行安装脚本）
 安装引擎：
@@ -211,9 +210,9 @@ ai-toolbox/
 
 \## 📬 联系方式
 
-项目作者 - [@yourname](https://github.com/yourname)
-
-项目链接: https://github.com/yourname/ai-toolbox
+项目作者 - [@XaingHui](https://github.com/XaingHui) 
+        - [@null0x0f](https://github.com/null0x0f)
+项目链接: https://github.com/XaingHui/QuickInstaller
 
 ([⬆ 回到顶部](#readme-top))
 
