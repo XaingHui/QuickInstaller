@@ -38,6 +38,7 @@ class Script(Base):
     category = Column(String, default="其他") # 新增：项目分类 (AI工具, Python库等)
     icon_url = Column(String, nullable=True)
     file_path = Column(String, nullable=False)
+    readme_path = Column(String, nullable=True) # 新增：README 说明文档路径
     status = Column(Enum(ScriptStatus), default=ScriptStatus.PENDING)
     downloads = Column(Integer, default=0)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)

@@ -37,3 +37,19 @@ def reject_script(script_id: int, db: Session = Depends(database.get_db), curren
     script.status = models.ScriptStatus.REJECTED
     db.commit()
     return {"message": "Script rejected"}
+
+# 删除脚本（同时清除物理文件）
+@router.delete("/{script_id}")
+def delete_script(script_id: int, db: Session = Depends(database.get_db), current_admin: models.User = Depends(auth.get_current_admin)):
+    import os
+    script = db.query(models.Script).filter(models.Script.id == script_id).first()
+    if not script:
+        raise HTTPException(status_code=404, detail="Script not found")
+    
+    # 删除物理文件
+    if script.file_path and os.path.exists(script.file_path):
+        os.remove(script.file_path)
+    
+    db.delete(script)
+    db.commit()
+    return {"message": "Script deleted"}
