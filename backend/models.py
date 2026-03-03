@@ -11,6 +11,7 @@ class ScriptStatus(str, enum.Enum):
 
 class UserRole(str, enum.Enum):
     USER = "user"
+    DEVELOPER = "developer"
     ADMIN = "admin"
 
 class User(Base):
@@ -18,11 +19,13 @@ class User(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True, nullable=False)
+    email = Column(String, unique=True, index=True, nullable=True)
     hashed_password = Column(String, nullable=False)
     role = Column(Enum(UserRole), default=UserRole.USER)
+    avatar_url = Column(String, nullable=True)   # 用户头像
+    display_name = Column(String, nullable=True) # 昵称
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     
-    # 一个用户可以上传多个脚本
     scripts = relationship("Script", back_populates="author")
 
 class Script(Base):
@@ -32,10 +35,11 @@ class Script(Base):
     title = Column(String, index=True, nullable=False)
     description = Column(Text, nullable=True)
     version = Column(String, default="1.0.0")
-    icon_url = Column(String, nullable=True)     # 在首页展示用的图标
-    file_path = Column(String, nullable=False)   # 脚本存放位置
+    category = Column(String, default="其他") # 新增：项目分类 (AI工具, Python库等)
+    icon_url = Column(String, nullable=True)
+    file_path = Column(String, nullable=False)
     status = Column(Enum(ScriptStatus), default=ScriptStatus.PENDING)
-    downloads = Column(Integer, default=0)       # 统计下载量
+    downloads = Column(Integer, default=0)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     
     author_id = Column(Integer, ForeignKey("users.id"))
