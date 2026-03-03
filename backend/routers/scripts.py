@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, File, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, File, UploadFile, Form
 from sqlalchemy.orm import Session
 from typing import List
 import os
@@ -6,6 +6,7 @@ import shutil
 
 from database import get_db
 import models
+import auth
 
 router = APIRouter()
 UPLOAD_DIR = "uploads"
@@ -28,8 +29,15 @@ def get_script_detail(script_id: int, db: Session = Depends(get_db)):
     return script
 
 @router.post("/upload")
-def upload_script(title: str, description: str, version: str, file: UploadFile = File(...), db: Session = Depends(get_db)):
-    # 实际上这里应该有 User 鉴权获取当前用户，方便演示暂时假定 author_id=1
+def upload_script(
+    title: str = Form(...), 
+    description: str = Form(""), 
+    version: str = Form("1.0.0"), 
+    category: str = Form("其他"),
+    file: UploadFile = File(...), 
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(auth.get_current_user)
+):
     file_location = f"{UPLOAD_DIR}/{file.filename}"
     with open(file_location, "wb+") as file_object:
         shutil.copyfileobj(file.file, file_object)
@@ -38,8 +46,9 @@ def upload_script(title: str, description: str, version: str, file: UploadFile =
         title=title,
         description=description,
         version=version,
+        category=category,
         file_path=file_location,
-        author_id=1  # 未来: 接入真正鉴权系统
+        author_id=current_user.id  
     )
     db.add(new_script)
     db.commit()
