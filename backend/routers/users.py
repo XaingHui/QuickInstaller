@@ -5,9 +5,9 @@ from datetime import timedelta
 
 
 import models
-from backend import database
+import database
 
-from backend import auth
+import auth
 
 from pydantic import BaseModel
 from typing import Optional

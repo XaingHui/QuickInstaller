@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 
 
 import models
-from backend import database
+import database
 
-from backend import auth
+import auth
 
 router = APIRouter()
 
