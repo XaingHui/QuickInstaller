@@ -4,9 +4,7 @@ from typing import List
 import os
 import shutil
 import models
-from backend import database
 
-from backend import auth
 
 from backend.database import get_db
 
